@@ -56,9 +56,13 @@ void menu0(FILE *file, char *file_name)
 		printf("n/a\n");
 		return;
 	}
-    //int n = sizeof(data) / sizeof(data[0]);
 
-    qsort(&data, 100, sizeof(struct MyStruct), compare);
+    int n = 0;
+    while (fread(&data, sizeof(struct MyStruct), 1, file) == 1) n++;
+    printf("%d", n);
+    // int n = sizeof(data) / sizeof(data[0]);
+
+    qsort(&data, n, sizeof(struct MyStruct), compare);
 
     while (fread(&data, sizeof(struct MyStruct), 1, file) == 1) {
         printf("%d %d %d %d %d %d %d %d\n", data.year, data.month, data.day, data.hour, data.minute, 
